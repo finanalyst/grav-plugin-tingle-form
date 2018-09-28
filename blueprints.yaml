@@ -1,0 +1,31 @@
+name: Tingle Form
+version: 0.1.0
+description: A standard form inside a tingle modal popup. Click on a button (created with a shortcode) and the form pops up.
+icon: plug
+author:
+  name: Richard N Hainsworth
+  email: rnhainsworth@gmail.com
+homepage: https://github.com/finanalyst/grav-plugin-tingle-form
+demo: http://demo.yoursite.com
+keywords: grav, plugin, etc
+bugs: https://github.com/finanalyst/grav-plugin-tingle-form/issues
+docs: https://github.com/finanalyst/grav-plugin-tingle-form/blob/develop/README.md
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    text_var:
+      type: text
+      label: PLUGIN_TINGLE_FORM.TEXT_VARIABLE
+      help: PLUGIN_TINGLE_FORM.TEXT_VARIABLE_HELP
