@@ -1,5 +1,5 @@
-# v0.1.0
-##  09/28/2018
+# v1.0.0
+##  3 Oct 2018
 
 1. [](#new)
-    * ChangeLog started...
+    * Plugin published.

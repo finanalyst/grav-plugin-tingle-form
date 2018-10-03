@@ -1,0 +1,15 @@
+<button class="btn" onclick="{{ tform }}_Modal.open();">{{ btnText?:'Click for form' }}</button>
+<script>
+var {{ tform }}_Modal = new tingle.modal({
+    footer: false,
+    closeMethods: ['button', 'escape', 'overlay'],
+    closeLabel: "{{ closeText?: 'Close' }}"
+    {% if classes %}, cssClass: [ {{ classes }}]{% endif %}
+});
+{{ tform }}_Modal.setContent('{{ popCont }}');
+$(document).ready(function() {
+    if ( {{ tform }}_Modal.getContent().children[0].className.includes('toast-error') ) {
+        {{ tform }}_Modal.open();
+    };
+})
+</script>

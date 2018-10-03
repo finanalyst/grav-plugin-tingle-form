@@ -1,8 +1,6 @@
 # Tingle Form Plugin
 
-**This README.md file should be modified to describe the features, installation, configuration, and general usage of this plugin.**
-
-The **Tingle Form** Plugin is for [Grav CMS](http://github.com/getgrav/grav). A standard form inside a tingle modal popup. Click on a button (created with a shortcode) and the form pops up.
+The **Tingle Form** Plugin is for [Grav CMS](http://github.com/getgrav/grav). A standard GRAV form is included inside a tingle modal popup. Click on a button (created with a shortcode) and the form pops up. If a submit button is pressed on the form, it will be processed and the form disappears.
 
 ## Installation
 
@@ -23,8 +21,8 @@ To install this plugin, just download the zip version of this repository and unz
 You should now have all the plugin files under
 
     /your/site/grav/user/plugins/tingle-form
-	
-> NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
+
+> NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error), [Form](https://github.com/getgrav/grav-plugin-form) and [Problems](https://github.com/getgrav/grav-plugin-problems) plugins to operate.
 
 ### Admin Plugin
 
@@ -44,13 +42,114 @@ Note that if you use the admin plugin, a file with your configuration, and named
 
 ## Usage
 
-**Describe how to use the plugin.**
+A standard `default.md` file (eg., as defined for the Quark theme) can be used. A form is defined in the page header (or elsewhere, see Form plugin documentation). A shortcode is placed in the file, which creates a button that when clicked pops up the form content in a modal window.
+
+>Note: The button is styled with the class `btn`, which is a standard button for the Quark theme.
+
+The form should contain at least one `Submit` button. When a `Submit` button is clicked, the form action is initiated and the form is removed.
+
+## Example
+This is the content of **user/pages/10.tingleform/default.md** file with a `Button` to popup a form defined in the file.
+```
+---
+title: TingleForm
+forms:
+    APopupForm:
+        action: /tingleform
+        fields:
+            - name: subject
+              type: text
+              label: Subject of message
+              placeholder: Write your subject here
+            - name: return
+              type: email
+              label: Return email address
+              validate:
+                required: true
+                message: Please include a return address
+            - name: content
+              label: Content of the message
+              type: textarea
+              placeholder: Say something nice
+              validate:
+                required: true
+                message: You have not sent a message
+        buttons:
+            - type: Submit
+              value: Send this Email
+            - type: Reset
+              value: Reset the form
+        process:
+            - save:
+                fileprefix: contact-
+                dateformat: Ymd-His
+                extension: txt
+                body: "{% include 'forms/data.txt.twig' %}"
+            - reset: true
+---
+# A page with a button
+
+[popup-form form=APopupForm classes=" 'myclass1', 'myclass2' "]Click on Me[/popup-form]
+
+```
+### Notes
+
+1. This example contains functionality described in the Form plugin. If an email is required, then the Email plugin needs to be installed.
+1. The `form` parameter is mandatory and is the name of the **Form** defined in the frontmatter.
+1. The optional `classes` parameter contains a string that is provided without filtering to the `tingle` **cssClass** parameter, which expects comma deliminated sequence of strings. Consequently it must be in the from `" 'class1' [ , 'class2'] "`. These classes are added to the `tingle` `div`.
+1. If validation is required, and GRAV returns the form with a `<div class="toast-error">` containing validation error messaging, then the `tingle` form will be popped up automatically.
+
+### Modular pages.
+
+This plugin works with modular pages. The following is the content of `user/pages/08.modular/05._tingleitem/text.md` (using the Quark theme)
+```
+---
+title: TingleItem
+forms:
+    APopupForm:
+        action: /modular#tingleitem
+        fields:
+            - name: subject
+              type: text
+              label: Subject of message
+              placeholder: Write your subject here
+            - name: return
+              type: email
+              label: Return email address
+              validate:
+                required: true
+                message: Please include a return address
+            - name: content
+              label: Content of the message
+              type: textarea
+              placeholder: Say something nice
+              validate:
+                required: true
+                message: You have not sent a message
+        buttons:
+            - type: Submit
+              value: Send this Email
+            - type: Reset
+              value: Reset the form
+        process:
+            - save:
+                fileprefix: contact-
+                dateformat: Ymd-His
+                extension: txt
+                body: "{% include 'forms/data.txt.twig' %}"
+            - reset: true
+---
+# A page with a button
+
+[popup-form form=APopupForm]Click on Me[/popup-form]
+```
+### Notes
+1. The `action` field in the form is critical. It is 'modular' because that is the name of the route.
+1. `#tingleitem` may be omitted, in which case after the form has been processed and disappears, the focus will return to the top of the modular page. By including `#tingleitem`, which is defined by the route associated with the text.md file, the focus returns to the position of the tingle-form on the page.
 
 ## Credits
 
-**Did you incorporate third-party code? Want to thank somebody?**
+- Robin Parisi, the [tingle](https://robinparisi.github.io/tingle/) developer.
+- krzysztofgal, who wrote the [GravGdprPrivacySetupPlugin](https://github.com/krzysztofgal/GravGdprPrivacySetupPlugin), for inspiration.
 
 ## To Do
-
-- [ ] Future plans, if any
-
