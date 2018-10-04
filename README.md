@@ -42,11 +42,18 @@ Note that if you use the admin plugin, a file with your configuration, and named
 
 ## Usage
 
-A standard `default.md` file (eg., as defined for the Quark theme) can be used. A form is defined in the page header (or elsewhere, see Form plugin documentation). A shortcode is placed in the file, which creates a button that when clicked pops up the form content in a modal window.
+A standard `default.md` file (eg., as defined for the Quark theme) can be used. A form is defined in the page header (or elsewhere, see Form plugin documentation). The `[popup-form]` shortcode is placed in the content file, which creates a button that when clicked pops up the form content in a modal window.
 
->Note: The button is styled with the class `btn`, which is a standard button for the Quark theme.
+### Shortcode and options
+`[popup-form form=<formname> <other options>]<Button text>[/popup-form]`  
+The parameter and options are:
+1. **Button text** is the label to be placed on the popup button. It defaults to 'Click for form'.
+1. `form` - This is mandatory and is the name of the form to be wrapped in the modal. If no `form` option is present, an error div is generated.
+1. `closeText` - an option for the Tingle code. It labels the close button for a mobile. On a PC the value is 'x'. Defaults to 'Close'.
+1.  `classes` - a string containing a comma delimited sequence of strings. Each sub-string is a class that will be added to the `div` wrapping the modal. It offers a way of customising the css.
+1. `btnClass` - This string is added to the `class` attribute of the `button` calling the popup. It defaults to 'btn', which is the generic button class for the `Quark` theme.
 
-The form should contain at least one `Submit` button. When a `Submit` button is clicked, the form action is initiated and the form is removed.
+The form is defined as given by the Form plugin documentation. It should contain at least one `Submit` button. When a `Submit` button is clicked, the form action is initiated and the form is removed.
 
 ## Example
 This is the content of **user/pages/10.tingleform/default.md** file with a `Button` to popup a form defined in the file.

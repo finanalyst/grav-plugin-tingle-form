@@ -1,4 +1,4 @@
-<button class="btn" onclick="{{ tform }}_Modal.open();">{{ btnText?:'Click for form' }}</button>
+<button class="{{ btnClass?:'btn' }}" onclick="{{ tform }}_Modal.open();">{{ btnText?:'Click for form' }}</button>
 <script>
 var {{ tform }}_Modal = new tingle.modal({
     footer: false,

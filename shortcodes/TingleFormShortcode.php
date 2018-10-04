@@ -9,10 +9,6 @@ class TingleFormShortcode extends Shortcode {
             if ( ! isset($params['form'] ) ) {
                 return '<div style="color: red;">Error in Tingle Form Shortcode: No form name is given.</div>';
             }
-            //add assets
-            $assets = $this->grav['assets'];
-            $assets->addJs("plugin://tingle-form/assets/tingle.min.js");
-            $assets->addCss("plugin://tingle-form/assets/tingle.min.css");
             $twig = $this->grav['twig'];
             $popCont = $twig->processTemplate('partials/tingle-content.html.twig', ['tform' => $params['form'] ]);
             $popCont = preg_replace( '/\s+/', ' ', $popCont);
@@ -21,8 +17,9 @@ class TingleFormShortcode extends Shortcode {
                     'tform' => $params['form'],
                     'popCont' => $popCont,
                     'btnText' => $sc->getContent(),
-                    'closeText' => $closeText,
-                    'classes' => isset($params['classes'])? $params['classes'] : ''
+                    'closeText' => isset($params['closeText'])? $params['closeText'] : '',
+                    'classes' => isset($params['classes'])? $params['classes'] : '',
+                    'btnClass' => isset($params['btnClass'])? $params['btnClass'] : ''
                 ]);
             return $output;
         });

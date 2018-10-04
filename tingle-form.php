@@ -23,6 +23,11 @@ class TingleFormPlugin extends Plugin
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths',0]
         ]);
+
+        //add assets
+        $assets = $this->grav['assets'];
+        $assets->addJs("plugin://tingle-form/assets/tingle.min.js");
+        $assets->addCss("plugin://tingle-form/assets/tingle.min.css");
     }
 
     public function onTwigTemplatePaths()
