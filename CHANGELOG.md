@@ -1,3 +1,8 @@
+# v1.0.2
+## 22 December 2020
+1. [](#update)
+    * Add raw to template
+    
 # v1.0.1
 ## 4 Oct 2018
 1.  [](#update)

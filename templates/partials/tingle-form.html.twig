@@ -6,7 +6,7 @@ var {{ tform }}_Modal = new tingle.modal({
     closeLabel: "{{ closeText?: 'Close' }}"
     {% if classes %}, cssClass: [ {{ classes }}]{% endif %}
 });
-{{ tform }}_Modal.setContent('{{ popCont }}');
+{{ tform }}_Modal.setContent('{{ popCont|raw }}');
 $(document).ready(function() {
     if ( {{ tform }}_Modal.getContent().children[0].className.includes('toast-error') ) {
         {{ tform }}_Modal.open();
