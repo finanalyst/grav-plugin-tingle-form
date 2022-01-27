@@ -24,3 +24,6 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+dependencies:
+  - { name: shortcode-core }
+  
