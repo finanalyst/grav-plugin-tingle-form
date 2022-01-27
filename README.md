@@ -158,5 +158,6 @@ forms:
 
 - Robin Parisi, the [tingle](https://robinparisi.github.io/tingle/) developer.
 - krzysztofgal, who wrote the [GravGdprPrivacySetupPlugin](https://github.com/krzysztofgal/GravGdprPrivacySetupPlugin), for inspiration.
+- Martin Zbinden (http://riedackerhof.ch/), for dependency check.
 
 ## To Do

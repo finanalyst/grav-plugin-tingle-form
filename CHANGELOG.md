@@ -1,3 +1,8 @@
+# v1.0.3
+## 27 January 2022
+1. [] (#add dep)
+    * Add shortcode core as a dependency
+    
 # v1.0.2
 ## 22 December 2020
 1. [](#update)
